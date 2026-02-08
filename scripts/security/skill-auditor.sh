@@ -21,8 +21,8 @@ if [ -d ~/.openclaw/skills ]; then
 fi
 
 # Workspace skills
-if [ -d ~/.openclaw/workspace/skills ]; then
-    echo "Workspace skills: $(ls ~/.openclaw/workspace/skills 2>/dev/null | wc -l) local"
+if [ -d ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/skills ]; then
+    echo "Workspace skills: $(ls ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/skills 2>/dev/null | wc -l) local"
     echo "  Risk: Low (built by us)"
 fi
 

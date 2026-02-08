@@ -2,7 +2,7 @@
 # Evolution Score Calculator - DAILY DELTA ONLY
 # Score = what was ADDED today, not total accumulated
 
-WORKSPACE="/Users/jms/.openclaw/workspace"
+WORKSPACE="${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}"
 TODAY=$(date +%Y-%m-%d)
 
 # Count NEW capabilities created today

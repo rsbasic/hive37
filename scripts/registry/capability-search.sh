@@ -46,13 +46,13 @@ echo ""
 # Check Abernath
 if ssh -o ConnectTimeout=2 smallminis-mini.lan "echo ok" 2>/dev/null | grep -q "ok"; then
     echo "  smallminis-mini.lan (Abernath37):"
-    if ssh smallminis-mini.lan "test -f ~/.openclaw/workspace/registry/capabilities.json" 2>/dev/null; then
-        REMOTE_COUNT=$(ssh smallminis-mini.lan "grep -c '\"name\":' ~/.openclaw/workspace/registry/capabilities.json" 2>/dev/null)
+    if ssh smallminis-mini.lan "test -f ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/registry/capabilities.json" 2>/dev/null; then
+        REMOTE_COUNT=$(ssh smallminis-mini.lan "grep -c '\"name\":' ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/registry/capabilities.json" 2>/dev/null)
         echo "    ✅ $REMOTE_COUNT capabilities available"
         
         if [ -n "$QUERY" ]; then
             echo "    Matching '$QUERY':"
-            ssh smallminis-mini.lan "cat ~/.openclaw/workspace/registry/capabilities.json" 2>/dev/null | \
+            ssh smallminis-mini.lan "cat ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/registry/capabilities.json" 2>/dev/null | \
                 grep -i "\"name\":.*$QUERY" | \
                 sed 's/.*"name": "\([^"]*\)".*/      • \1 (pull with: capability-pull.sh smallminis-mini.lan \1)/'
         fi

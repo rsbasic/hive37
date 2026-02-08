@@ -16,7 +16,7 @@ fi
 
 # Run all gates
 echo "🔍 Running quality gate..."
-if ! ~/conclave-sync/scripts/quality-gate.sh "$FILE" "$TYPE"; then
+if ! ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/scripts/quality-gate.sh "$FILE" "$TYPE"; then
     echo ""
     echo "❌ REJECTED: Quality standards not met"
     exit 1
@@ -24,7 +24,7 @@ fi
 
 echo ""
 echo "🔍 Running anti-gaming checks..."
-if ! ~/conclave-sync/scripts/anti-gaming-enforcer.sh "$FILE"; then
+if ! ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/scripts/anti-gaming-enforcer.sh "$FILE"; then
     echo ""
     echo "❌ REJECTED: Gaming detected"
     exit 1
@@ -32,7 +32,7 @@ fi
 
 echo ""
 echo "🔍 Verifying value..."
-if ! ~/conclave-sync/scripts/value-verifier.sh "$FILE" "$TYPE"; then
+if ! ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/scripts/value-verifier.sh "$FILE" "$TYPE"; then
     echo ""
     echo "❌ REJECTED: Insufficient value"
     exit 1

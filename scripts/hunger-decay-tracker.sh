@@ -1,7 +1,7 @@
 #!/bin/bash
 # hunger-decay-tracker.sh — Track score with hourly decay
 
-cd ~/conclave-sync
+cd ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}
 
 echo "=== Hunger Decay Tracker ==="
 echo "Time: $(date)"

@@ -17,9 +17,9 @@ echo ""
 
 # Determine remote path based on agent
 if [ "$AGENT" = "smallminis-mini.lan" ]; then
-    REMOTE_PATH="~/.openclaw/workspace"
+    REMOTE_PATH="${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}"
 else
-    REMOTE_PATH="~/conclave-sync"
+    REMOTE_PATH="${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}"
 fi
 
 # Check if capability exists on remote

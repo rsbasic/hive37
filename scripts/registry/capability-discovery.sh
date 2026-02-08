@@ -7,7 +7,7 @@ echo ""
 
 # List of agent workspaces to check
 AGENTS=(
-    "smallminis-mini.lan:~/.openclaw/workspace"
+    "smallminis-mini.lan:${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}"
 )
 
 echo "🔍 Scanning for other agents..."

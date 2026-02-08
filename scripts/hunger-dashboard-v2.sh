@@ -1,7 +1,7 @@
 #!/bin/bash
 # hunger-dashboard-v2.sh — Dashboard with decay and validation
 
-cd ~/conclave-sync
+cd ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}
 
 echo "=== Hunger Dashboard v2 (with Decay) ==="
 echo "Time: $(date +%H:%M)"
@@ -19,14 +19,14 @@ VALIDATED_KNOW=0
 
 # Check each script for quality
 for script in $(find scripts -name "*.sh" -newermt "$TODAY" 2>/dev/null); do
-    if ~/conclave-sync/scripts/work-validator.sh "$script" script >/dev/null 2>&1; then
+    if ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/scripts/work-validator.sh "$script" script >/dev/null 2>&1; then
         ((VALIDATED_CAPS++))
     fi
 done
 
 # Check each knowledge file for quality  
 for doc in $(find knowledge-store -name "*.md" -newermt "$TODAY" 2>/dev/null); do
-    if ~/conclave-sync/scripts/work-validator.sh "$doc" knowledge >/dev/null 2>&1; then
+    if ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}/scripts/work-validator.sh "$doc" knowledge >/dev/null 2>&1; then
         ((VALIDATED_KNOW++))
     fi
 done

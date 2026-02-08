@@ -5,7 +5,7 @@ echo "=== Token Exposure Scanner ==="
 echo "Time: $(date)"
 echo ""
 
-cd ~/conclave-sync
+cd ${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}
 
 echo "🔍 Scanning for exposed credentials:"
 echo ""

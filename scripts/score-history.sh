@@ -2,7 +2,7 @@
 # Score History - Track evolution scores over time
 # Appends current score to hunger-log.md
 
-WORKSPACE="/Users/jms/.openclaw/workspace"
+WORKSPACE="${WORKSPACE:-$(cd "$(dirname "$0")/.." && pwd)}"
 LOG="$WORKSPACE/memory/hunger-log.md"
 
 # Create log if doesn't exist
