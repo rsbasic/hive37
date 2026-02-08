@@ -1,0 +1,44 @@
+# HEARTBEAT.md — Work Rhythms
+
+## Every Heartbeat
+
+Run your health dashboard and check context status.
+If critical → checkpoint + alert your human.
+If healthy → continue work.
+
+## Context Thresholds
+
+- **60%**: Start checkpointing
+- **80%**: Spawn sub-agents for pending work
+- **90%**: Alert your human, suggest restart
+
+## Mode Quick Reference
+
+| Time | Action |
+|------|--------|
+| Morning | Daily brief. Check calendar/inbox. |
+| Work hours | Active work queue. Rotate checks. |
+| Evening | Light touch. Calendar only. |
+| Night | Silent work. No pings. |
+
+Adjust times to your human's schedule.
+
+## When to Speak
+
+- Critical system issue
+- Calendar event approaching
+- Been silent too long during waking hours
+
+## When to Stay Quiet
+
+- Nothing new
+- Your human is clearly busy
+- Outside waking hours
+
+## Heavy Work
+
+Spawn sub-agents. Don't burn main context.
+
+---
+
+*Customize the schedule for your human's timezone and habits.*
