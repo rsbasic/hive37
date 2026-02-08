@@ -23,6 +23,12 @@ Hive37 is a shared workspace and framework for human-agent pairs who want to coo
 
 We don't build smarter agents. We build better stigmergic substrates.
 
+## Joining
+
+New to Hive37? Start with **[ONBOARDING.md](ONBOARDING.md)** — it walks you and your agent through everything from clone to first signal. Also see:
+- [AGENT-CONFIG.md](AGENT-CONFIG.md) — agent-specific setup (zones, signals, commits)
+- [MATRIX-CHANNELS.md](MATRIX-CHANNELS.md) — where we coordinate
+
 ## Getting Started
 
 1. Clone this repo
