@@ -114,6 +114,7 @@
 
   <form class="email-form" id="emailForm" onsubmit="return handleSubmit(event)">
     <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+    <input type="text" name="name" placeholder="First name (optional)" style="flex:1;min-width:160px;padding:0.9rem 1.25rem;border:1px solid #333;border-radius:8px;background:#111;color:#fff;font-size:1rem;outline:none;">
     <button type="submit">Read the Essay</button>
   </form>
   <p class="note">No spam. No account. Just the essay.</p>
@@ -134,19 +135,18 @@
     // GOOGLE_FORM_URL: Replace with your Google Form action URL
     // To set up: Create Google Form with one "Email" field, get the pre-filled link,
     // extract the form action URL and entry ID
-    const GOOGLE_FORM_URL = '';  // e.g. 'https://docs.google.com/forms/d/e/XXXXX/formResponse'
-    const GOOGLE_FORM_ENTRY = ''; // e.g. 'entry.123456789'
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScJMDDJQUwJwm4HPgq5k6hHHjeL5FtFMSPxiEcF0Ckt6BnB0A/formResponse';
 
     function handleSubmit(e) {
       e.preventDefault();
       const email = e.target.email.value;
+      const name = e.target.name.value;
 
-      // If Google Form is configured, submit email in background
-      if (GOOGLE_FORM_URL && GOOGLE_FORM_ENTRY) {
-        const formData = new FormData();
-        formData.append(GOOGLE_FORM_ENTRY, email);
-        fetch(GOOGLE_FORM_URL, { method: 'POST', body: formData, mode: 'no-cors' });
-      }
+      // Submit to Google Form in background
+      const formData = new FormData();
+      formData.append('emailAddress', email);
+      formData.append('entry.1594573359', name);
+      fetch(GOOGLE_FORM_URL, { method: 'POST', body: formData, mode: 'no-cors' });
 
       // Show success + direct link, then redirect
       document.getElementById('directLink').href = ESSAY_URL;
