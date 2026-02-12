@@ -36,75 +36,30 @@
     }
     .subtitle {
       color: #999;
-      margin: 1.25rem 0 2rem;
+      margin: 1.25rem 0 2.5rem;
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       max-width: 500px;
       line-height: 1.5;
     }
-    .form-container {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 440px;
-      width: 100%;
-    }
-    .form-container p {
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 1.25rem;
-    }
-    .form-container input {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border: 1px solid #333;
-      border-radius: 8px;
-      background: #0a0a0a;
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-      margin-bottom: 0.75rem;
-      transition: border-color 0.2s;
-    }
-    .form-container input:focus { border-color: #f59e0b; }
-    .form-container input::placeholder { color: #555; }
-    .form-container button {
-      width: 100%;
-      padding: 0.85rem;
+    .cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
       background: #fff;
       color: #0a0a0a;
-      border: none;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
+      font-size: 1.1rem;
+      text-decoration: none;
       transition: opacity 0.2s;
-      margin-top: 0.25rem;
     }
-    .form-container button:hover { opacity: 0.85; }
+    .cta:hover { opacity: 0.85; }
     .note {
       color: #555;
-      font-size: 0.75rem;
-      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      margin-top: 1rem;
     }
-    .success {
-      display: none;
-      text-align: center;
-      padding: 1rem 0;
-    }
-    .success h3 {
-      color: #22c55e;
-      margin-bottom: 0.75rem;
-    }
-    .success a {
-      color: #f59e0b;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .success a:hover { text-decoration: underline; }
     .footer {
-      margin-top: 3rem;
+      margin-top: 4rem;
       color: #444;
       font-size: 0.85rem;
       line-height: 1.8;
@@ -123,86 +78,13 @@
   <h1>The Gatekeepers Are Falling</h1>
   <p class="subtitle">AI is eating software. This is what comes next.</p>
 
-  <div class="form-container" id="formBox">
-    <p>Enter your email to read the full essay.</p>
-    <form id="emailForm" onsubmit="return handleSubmit(event)">
-      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-      <input type="text" name="name" placeholder="First name (optional)" autocomplete="given-name">
-      <button type="submit" id="submitBtn">Read the Essay →</button>
-    </form>
-    <p class="note">No spam. No account required.</p>
-  </div>
-
-  <div class="success" id="successBox">
-    <h3>You're in.</h3>
-    <a id="essayLink" href="#">Read the Essay →</a>
-  </div>
+  <a class="cta" href="https://hive37.substack.com">Read the Essay →</a>
+  <p class="note">Free to read. Subscribe to get future essays.</p>
 
   <div class="footer">
-    <a href="https://hive37.substack.com">Substack</a>
-    <span>·</span>
     <a href="https://github.com/rsbasic/hive37">GitHub</a>
     <span>·</span>
     <a href="https://twitter.com/mark_skaggs">@mark_skaggs</a>
   </div>
-
-  <script>
-    // ESSAY URL - update when Substack post is published
-    const ESSAY_URL = 'https://hive37.substack.com/p/the-gatekeepers-are-falling';
-
-    // Google Form endpoint and field IDs
-    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScJMDDJQUwJwm4HPgq5k6hHHjeL5FtFMSPxiEcF0Ckt6BnB0A/formResponse';
-    const EMAIL_ENTRY = 'entry.819821440';
-    const NAME_ENTRY = 'entry.1594573359';
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      var email = e.target.email.value;
-      var name = e.target.name.value;
-      var btn = document.getElementById('submitBtn');
-      btn.textContent = 'Submitting...';
-      btn.disabled = true;
-
-      // Submit to Google Form via hidden iframe (bypasses CORS and sign-in redirect)
-      var iframe = document.createElement('iframe');
-      iframe.name = 'hidden_iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-
-      var form = document.createElement('form');
-      form.method = 'POST';
-      form.action = FORM_URL;
-      form.target = 'hidden_iframe';
-
-      var emailInput = document.createElement('input');
-      emailInput.name = EMAIL_ENTRY;
-      emailInput.value = email;
-      form.appendChild(emailInput);
-
-      var nameInput = document.createElement('input');
-      nameInput.name = NAME_ENTRY;
-      nameInput.value = name;
-      form.appendChild(nameInput);
-
-      document.body.appendChild(form);
-      form.submit();
-
-      // Show success after brief delay (form submits in background)
-      setTimeout(function() {
-        document.getElementById('formBox').style.display = 'none';
-        document.getElementById('essayLink').href = ESSAY_URL;
-        document.getElementById('successBox').style.display = 'block';
-        // Also store in localStorage so they don't see form again
-        localStorage.setItem('hive37_subscribed', '1');
-      }, 1500);
-    }
-
-    // Skip form if already subscribed
-    if (localStorage.getItem('hive37_subscribed')) {
-      document.getElementById('formBox').style.display = 'none';
-      document.getElementById('essayLink').href = ESSAY_URL;
-      document.getElementById('successBox').style.display = 'block';
-    }
-  </script>
 </body>
 </html>
