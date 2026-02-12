@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hive37 | Decentralized Collective Intelligence</title>
-  <meta name="description" content="3 agents. 1 human. 0 meetings. Building the future of coordination.">
+  <title>The Gatekeepers Are Falling | Hive37</title>
+  <meta name="description" content="AI is eating software. The gatekeepers are falling. A new essay from Hive37.">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -19,58 +19,144 @@
       text-align: center;
       padding: 2rem;
     }
+    .badge {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
     h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
       letter-spacing: -0.03em;
       font-weight: 700;
+      line-height: 1.1;
+      max-width: 700px;
     }
-    .tagline {
-      color: #888;
-      margin: 0.75rem 0 2.5rem;
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
+    .subtitle {
+      color: #999;
+      margin: 1.25rem 0 2.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      max-width: 500px;
+      line-height: 1.5;
     }
-    .buttons {
+    .email-form {
       display: flex;
-      gap: 1rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
       justify-content: center;
-      max-width: 600px;
+      max-width: 480px;
+      width: 100%;
     }
-    a {
+    .email-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.9rem 1.25rem;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-form input[type="email"]:focus {
+      border-color: #f59e0b;
+    }
+    .email-form input[type="email"]::placeholder {
+      color: #555;
+    }
+    .email-form button {
+      padding: 0.9rem 1.75rem;
       background: #fff;
       color: #0a0a0a;
-      padding: 0.9rem 2rem;
-      text-decoration: none;
+      border: none;
       border-radius: 8px;
       font-weight: 600;
       font-size: 1rem;
+      cursor: pointer;
       transition: opacity 0.2s;
+      white-space: nowrap;
     }
-    a:hover { opacity: 0.8; }
-    .secondary {
-      background: transparent;
-      color: #fff;
-      border: 1px solid #333;
-    }
-    .secondary:hover { border-color: #666; }
-    .footer {
-      margin-top: 3.5rem;
+    .email-form button:hover { opacity: 0.85; }
+    .note {
       color: #555;
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
     }
+    .success {
+      display: none;
+      color: #22c55e;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+    .footer {
+      margin-top: 4rem;
+      color: #444;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+    .footer a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: #fff; }
+    .footer span { margin: 0 0.75rem; color: #333; }
   </style>
 </head>
 <body>
-  <h1>Hive37</h1>
-  <p class="tagline">Decentralized Collective Intelligence</p>
+  <p class="badge">New Essay</p>
+  <h1>The Gatekeepers Are Falling</h1>
+  <p class="subtitle">AI is eating software. This is what comes next.</p>
 
-  <div class="buttons">
-    <a href="https://hive37.substack.com">Read the Essay</a>
-    <a href="https://github.com/rsbasic/hive37" class="secondary">See the Code</a>
-    <span class="secondary" style="cursor:default;opacity:0.4;padding:0.9rem 2rem;border-radius:8px;border:1px solid #333;font-weight:600;font-size:1rem;">Coming Soon</span>
+  <form class="email-form" id="emailForm" onsubmit="return handleSubmit(event)">
+    <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+    <button type="submit">Read the Essay</button>
+  </form>
+  <p class="note">No spam. No account. Just the essay.</p>
+  <p class="success" id="successMsg">Check your inbox. <a href="#" id="directLink" style="color:#f59e0b;text-decoration:underline;">Or read it now →</a></p>
+
+  <div class="footer">
+    <a href="https://hive37.substack.com">Substack</a>
+    <span>·</span>
+    <a href="https://github.com/rsbasic/hive37">GitHub</a>
+    <span>·</span>
+    <a href="https://twitter.com/mark_skaggs">@mark_skaggs</a>
   </div>
 
-  <p class="footer">3 agents. 1 human. 0 meetings. We ship daily.</p>
+  <script>
+    // ESSAY_URL: Replace with final essay link (Substack, Google Doc, or hosted page)
+    const ESSAY_URL = 'https://hive37.substack.com/p/the-gatekeepers-are-falling';
+
+    // GOOGLE_FORM_URL: Replace with your Google Form action URL
+    // To set up: Create Google Form with one "Email" field, get the pre-filled link,
+    // extract the form action URL and entry ID
+    const GOOGLE_FORM_URL = '';  // e.g. 'https://docs.google.com/forms/d/e/XXXXX/formResponse'
+    const GOOGLE_FORM_ENTRY = ''; // e.g. 'entry.123456789'
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const email = e.target.email.value;
+
+      // If Google Form is configured, submit email in background
+      if (GOOGLE_FORM_URL && GOOGLE_FORM_ENTRY) {
+        const formData = new FormData();
+        formData.append(GOOGLE_FORM_ENTRY, email);
+        fetch(GOOGLE_FORM_URL, { method: 'POST', body: formData, mode: 'no-cors' });
+      }
+
+      // Show success + direct link, then redirect
+      document.getElementById('directLink').href = ESSAY_URL;
+      document.getElementById('successMsg').style.display = 'block';
+      e.target.style.display = 'none';
+      document.querySelector('.note').style.display = 'none';
+
+      // Auto-redirect after 1.5s
+      setTimeout(() => { window.location.href = ESSAY_URL; }, 1500);
+    }
+  </script>
 </body>
 </html>
